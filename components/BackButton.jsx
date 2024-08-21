@@ -1,11 +1,17 @@
 import { View, Text, Pressable, StyleSheet } from "react-native";
 import React from "react";
 import { theme } from "../constants/theme";
+import Icon from "../assets/icons/Index";
 
-const BackButton = ({ router }) => {
+const BackButton = ({ size = 26, router }) => {
   return (
     <Pressable onPress={() => router.back()} style={styles.button}>
-      <Text>Back</Text>
+      <Icon
+        name="back"
+        strokeWidth={2.5}
+        size={size}
+        color={theme.colors.text}
+      />
     </Pressable>
   );
 };

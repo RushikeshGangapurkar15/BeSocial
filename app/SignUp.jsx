@@ -9,6 +9,7 @@ import { hp, wp } from "../Helpers/Common";
 import { theme } from "../constants/theme";
 import Input from "../components/Input";
 import Button from "../components/Button";
+import Icon from "../assets/icons/Index";
 
 const SignUp = () => {
   const router = useRouter();
@@ -34,32 +35,50 @@ const SignUp = () => {
           <Text style={styles.welcomeText}>Get Started</Text>
         </View>
 
-        <View>
+        {/* <View>
           <Text style={{ fontSize: hp(1.5), color: theme.colors.text }}>
             Please fill details to create an account
           </Text>
-        </View>
+        </View> */}
 
         <View style={styles.form}>
           <Input
-            icon={<></>}
+            icon={
+              <Icon
+                name="user"
+                color={theme.colors.textLight}
+                strokeWidth={1.6}
+              />
+            }
             placeholder="Enter Your Name"
             onChangeText={(val) => (emailRef.current = val)}
           />
           <Input
-            icon={<></>}
+            icon={
+              <Icon
+                name="mail"
+                color={theme.colors.textLight}
+                strokeWidth={1.6}
+              />
+            }
             placeholder="Enter Your email"
             onChangeText={(val) => (emailRef.current = val)}
           />
           <Input
-            icon={<></>}
+            icon={
+              <Icon
+                name="lock"
+                color={theme.colors.textLight}
+                strokeWidth={1.6}
+              />
+            }
             placeholder="Enter Your Password"
             onChangeText={(val) => (passRef.current = val)}
             secureTextEntry
           />
 
-          <Text style={styles.forgotPass}>Forgot Password??</Text>
-
+          {/* <Text style={styles.forgotPass}>Forgot Password??</Text> */}
+          <View></View>
           <Button title={"Signup"} onPress={onSubmit} loading={loading} />
         </View>
         <View style={styles.footer}>
@@ -86,7 +105,12 @@ const SignUp = () => {
 export default SignUp;
 
 const styles = StyleSheet.create({
-  container: { flex: 1, gap: 45, paddingHorizontal: wp(5) },
+  container: {
+    flex: 1,
+    gap: 45,
+    paddingHorizontal: wp(5),
+    paddingVertical: hp(2),
+  },
   welcomeText: {
     fontSize: hp(4),
 
