@@ -7,6 +7,7 @@ const _layout = () => {
     <Stack
       screenOptions={{
         headerShown: false,
+        animation: "simple_push",
       }}
     />
   );

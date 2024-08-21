@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     height: hp(7.2),
     alignItems: "center",
     justifyContent: "center",
-    borderWidth: 0.4,
+    borderWidth: 0.3,
     borderColor: theme.colors.text,
     borderRadius: theme.radius.xxl,
     borderCurve: "continuous",

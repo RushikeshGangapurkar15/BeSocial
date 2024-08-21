@@ -9,6 +9,8 @@ import { hp, wp } from "../Helpers/Common";
 import { theme } from "../constants/theme";
 import Input from "../components/Input";
 import Button from "../components/Button";
+import { Home } from "../assets/icons/CustomeIcons";
+import Icon from "../assets/icons/Index";
 
 const Login = () => {
   const router = useRouter();
@@ -33,19 +35,35 @@ const Login = () => {
           <Text style={styles.welcomeText}>Welcome Back</Text>
         </View>
 
-        <View>
-          <Text style={{ fontSize: hp(1.5), color: theme.colors.text }}>
-            Please login to countinue
-          </Text>
-        </View>
         <View style={styles.form}>
+          {/* <Text
+            style={{
+              fontSize: hp(1.5),
+              color: theme.colors.text,
+              marginLeft: wp(1),
+            }}
+          >
+            Please login to countinue
+          </Text> */}
           <Input
-            icon={<></>}
+            icon={
+              <Icon
+                name="mail"
+                color={theme.colors.textLight}
+                strokeWidth={1.6}
+              />
+            }
             placeholder="Enter Your email"
             onChangeText={(val) => (emailRef.current = val)}
           />
           <Input
-            icon={<></>}
+            icon={
+              <Icon
+                name="lock"
+                color={theme.colors.textLight}
+                strokeWidth={1.6}
+              />
+            }
             placeholder="Enter Your Password"
             onChangeText={(val) => (passRef.current = val)}
             secureTextEntry
@@ -79,7 +97,12 @@ const Login = () => {
 export default Login;
 
 const styles = StyleSheet.create({
-  container: { flex: 1, gap: 45, paddingHorizontal: wp(5) },
+  container: {
+    flex: 1,
+    gap: 45,
+    paddingHorizontal: wp(5),
+    paddingVertical: hp(2),
+  },
   welcomeText: {
     fontSize: hp(4),
 
