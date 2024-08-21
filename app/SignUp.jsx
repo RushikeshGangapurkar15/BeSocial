@@ -10,6 +10,7 @@ import { theme } from "../constants/theme";
 import Input from "../components/Input";
 import Button from "../components/Button";
 import Icon from "../assets/icons/Index";
+import { supabase } from "../lib/Supabase";
 
 const SignUp = () => {
   const router = useRouter();
@@ -18,10 +19,36 @@ const SignUp = () => {
   const passRef = useRef();
 
   const [loading, setLoading] = useState(false);
-  const onSubmit = () => {
-    if (!emailRef.current || !passRef.current) {
+  const onSubmit = async () => {
+    if (!emailRef.current || !passRef.current || !nameRef.current) {
       Alert.alert("SignUp", "Invalid Fields");
       return;
+    }
+    let name = nameRef.current.trim();
+    let email = emailRef.current.trim();
+    let password = passRef.current.trim();
+
+    setLoading(true);
+
+    const {
+      data: { session },
+      error,
+    } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        data: {
+          name,
+        },
+      },
+    });
+
+    setLoading(false);
+    console.log("Session", session);
+    console.log("Error", error);
+
+    if (error) {
+      Alert.alert("Signup Error", error.message);
     }
   };
   return (
@@ -51,7 +78,7 @@ const SignUp = () => {
               />
             }
             placeholder="Enter Your Name"
-            onChangeText={(val) => (emailRef.current = val)}
+            onChangeText={(val) => (nameRef.current = val)}
           />
           <Input
             icon={
