@@ -18,12 +18,12 @@ const MainLayout = () => {
   const router = useRouter();
   useEffect(() => {
     supabase.auth.onAuthStateChange((_event, session) => {
-      console.log(session?.user?.id);
+      console.log(session?.user);
       if (session) {
         // nav to home and setAuth session
         setAuth(session?.user);
         updateUserData(session?.user);
-        router.replace("/Home");
+        router.replace("Home");
       } else {
         // move to welcome
         setAuth(null);
@@ -42,12 +42,14 @@ const MainLayout = () => {
   };
 
   return (
-    <Stack
-      screenOptions={{
-        headerShown: false,
-        animation: "simple_push",
-      }}
-    />
+    <>
+      <Stack
+        screenOptions={{
+          headerShown: false,
+          animation: "simple_push",
+        }}
+      />
+    </>
   );
 };
 
