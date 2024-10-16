@@ -23,6 +23,7 @@ import {
   Logout,
   Image,
   Video,
+  Bell,
 } from "./CustomeIcons";
 
 const iconsdata = {
@@ -47,6 +48,7 @@ const iconsdata = {
   logout: Logout,
   image: Image,
   video: Video,
+  bell: Bell,
 };
 
 const Icon = ({ name, ...props }) => {
