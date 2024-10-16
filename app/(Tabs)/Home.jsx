@@ -5,20 +5,14 @@ import Button from "../../components/Button";
 import { useAuth } from "../../Contexts/AuthContext";
 import { supabase } from "../../lib/Supabase";
 import { hp, wp } from "../../Helpers/Common";
-import { FONTFAMILY, theme } from "../../constants/theme";
+import { theme } from "../../constants/theme";
 import Icon from "../../assets/icons/Index";
 import { useRouter } from "expo-router";
 
 const Home = () => {
   const { setAuth } = useAuth();
   const router = useRouter();
-  const logout = async () => {
-    const { error } = await supabase.auth.signOut();
 
-    if (error) {
-      Alert.alert("Sign out Error", error.message);
-    }
-  };
   return (
     <ScreenWrapper bg={"white"}>
       <View style={styles.container}>
@@ -36,7 +30,6 @@ const Home = () => {
           </View>
         </View>
       </View>
-      {/* <Button title={"Logout"} onPress={logout} /> */}
     </ScreenWrapper>
   );
 };

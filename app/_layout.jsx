@@ -22,7 +22,7 @@ const MainLayout = () => {
       if (session) {
         // nav to home and setAuth session
         setAuth(session?.user);
-        updateUserData(session?.user);
+        updateUserData(session?.user, session?.user?.email);
         router.replace("Home");
       } else {
         // move to welcome
@@ -32,11 +32,11 @@ const MainLayout = () => {
     });
   }, []);
 
-  const updateUserData = async (user) => {
+  const updateUserData = async (user, email) => {
     let res = await getUserData(user?.id);
 
     if (res.success) {
-      setUserData(res.data);
+      setUserData({ ...res.data, email });
     }
     // console.log("Got userData: ", res);
   };
