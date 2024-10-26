@@ -5,7 +5,7 @@ import Button from "../../components/Button";
 import { useAuth } from "../../Contexts/AuthContext";
 import { supabase } from "../../lib/Supabase";
 import { hp, wp } from "../../Helpers/Common";
-import { theme } from "../../constants/theme";
+import { FONTFAMILY, theme } from "../../constants/theme";
 import Icon from "../../assets/icons/Index";
 import { useRouter } from "expo-router";
 
@@ -17,7 +17,7 @@ const Home = () => {
     <ScreenWrapper bg={"white"}>
       <View style={styles.container}>
         <View style={styles.header}>
-          <Text style={styles.title}>Be Social</Text>
+          <Text style={[styles.title]}>Be Social</Text>
           <View style={styles.icons}>
             <Pressable onPress={() => router.push("Notifications")}>
               <Icon
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
   title: {
     color: theme.colors.textLight,
     fontSize: hp(3.8),
-    fontWeight: theme.fonts.extraBold,
+    fontFamily: FONTFAMILY.poppins_semibold,
   },
   avatarImage: {
     height: hp(4.3),

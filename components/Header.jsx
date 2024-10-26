@@ -2,7 +2,7 @@ import { View, Text, StyleSheet } from "react-native";
 import React from "react";
 import { useRouter } from "expo-router";
 import BackButton from "./BackButton";
-import { theme } from "../constants/theme";
+import { FONTFAMILY, theme } from "../constants/theme";
 import { hp } from "../Helpers/Common";
 
 const Header = ({ title, showButton = true, mb = 30 }) => {
@@ -26,13 +26,13 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 5,
+    marginTop: 18,
     gap: 10,
   },
   title: {
     fontSize: hp(2.7),
-    fontWeight: theme.fonts.bold,
     color: theme.colors.textDark,
+    fontFamily: FONTFAMILY.poppins_semibold,
   },
   backButton: {
     position: "absolute",

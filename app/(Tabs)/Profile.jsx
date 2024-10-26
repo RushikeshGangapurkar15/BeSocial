@@ -7,7 +7,7 @@ import Header from "../../components/Header";
 import { hp, wp } from "../../Helpers/Common";
 import { TouchableOpacity } from "react-native";
 import Icon from "../../assets/icons/Index";
-import { theme } from "../../constants/theme";
+import { FONTFAMILY, theme } from "../../constants/theme";
 import { supabase } from "../../lib/Supabase";
 import Avatar from "../../components/Avatar";
 
@@ -73,7 +73,7 @@ const UserHeader = ({ user, router, handleLogout }) => {
           {/* User Info */}
           <View style={{ alignItems: "center", gap: 4 }}>
             <Text style={styles.userName}>{user && user.name}</Text>
-            <Text style={styles.textInfo}>
+            <Text style={[styles.textInfo, { marginTop: -5 }]}>
               {user.address ? user.address : "India"}
             </Text>
           </View>
@@ -82,16 +82,18 @@ const UserHeader = ({ user, router, handleLogout }) => {
           <View style={{ gap: 10 }}>
             <View style={styles.info}>
               <Icon name="mail" size={20} color={theme.colors.textLight} />
-              <Text style={styles.textInfo}>{user && user.email}</Text>
+              <Text style={styles.textInfo}>{(user && user.email) || "a"}</Text>
             </View>
-            {user && user.phoneNumber && (
+            {user && !user.phoneNumber && (
               <View style={styles.info}>
                 <Icon name="call" size={20} color={theme.colors.textLight} />
-                <Text style={styles.textInfo}>{user && user.phoneNumber}</Text>
+                <Text style={styles.textInfo}>
+                  {(user && user.phoneNumber) || "99855484"}
+                </Text>
               </View>
             )}
-            {user && user.bio && (
-              <Text style={styles.textInfo}>{user && user.bio}</Text>
+            {user && !user.bio && (
+              <Text style={styles.textInfo}>{(user && user.bio) || "bio"}</Text>
             )}
           </View>
         </View>
@@ -134,21 +136,20 @@ const styles = StyleSheet.create({
   },
   userName: {
     fontSize: hp(3),
-    fontWeight: theme.fonts.medium,
-    // fontWeight: "500",
     color: theme.colors.textDark,
+    fontFamily: FONTFAMILY.poppins_medium,
   },
   info: {
     flexDirection: "row",
     alignItems: "center",
     gap: 10,
-    // borderWidth: 1,
   },
   textInfo: {
-    fontSize: hp(1.6),
-    fontWeight: "500",
+    fontSize: hp(2),
+
     color: theme.colors.textLight,
     marginBottom: 3,
+    fontFamily: FONTFAMILY.kanit_Regular,
   },
   logoutButton: {
     position: "absolute",
@@ -156,6 +157,7 @@ const styles = StyleSheet.create({
     padding: 5,
     borderRadius: theme.radius.sm,
     backgroundColor: "#fee2e2",
+    top: 15,
   },
   listStyle: {
     paddingHorizontal: wp(4),
