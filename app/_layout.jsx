@@ -1,11 +1,43 @@
 import { View, Text } from "react-native";
 import React, { useEffect } from "react";
-import { Stack, useRouter } from "expo-router";
+import { SplashScreen, Stack, useRouter } from "expo-router";
 import { AuthProvider, useAuth } from "../Contexts/AuthContext";
 import { supabase } from "../lib/Supabase";
 import { getUserData } from "../Services/userService";
+import { useFonts } from "expo-font";
+import {
+  setStatusBarBackgroundColor,
+  setStatusBarStyle,
+} from "expo-status-bar";
+import { theme } from "../constants/theme";
 
 const _layout = () => {
+  const [fontsLoaded, error] = useFonts({
+    "Poppins-Light": require("../assets/fonts/Poppins-Light.ttf"),
+    "Poppins-Medium": require("../assets/fonts/Poppins-Medium.ttf"),
+    "Poppins-Semibold": require("../assets/fonts/Poppins-SemiBold.ttf"),
+    "Poppins-Regular": require("../assets/fonts/Poppins-Regular.ttf"),
+    "Kanit-Regular": require("../assets/fonts/Kanit-Regular.ttf"),
+    "Kanit-Medium": require("../assets/fonts/Kanit-Medium.ttf"),
+  });
+
+  useEffect(() => {
+    if (error) throw error;
+    if (fontsLoaded) {
+      SplashScreen.hideAsync();
+      setStatusBarStyle("light");
+      setStatusBarBackgroundColor(theme.colors.text);
+    }
+  }, [fontsLoaded, error]);
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
+  if (!fontsLoaded && !error) {
+    return null;
+  }
+
   return (
     <AuthProvider>
       <MainLayout />
@@ -18,12 +50,12 @@ const MainLayout = () => {
   const router = useRouter();
   useEffect(() => {
     supabase.auth.onAuthStateChange((_event, session) => {
-      console.log(session?.user?.id);
+      console.log(session?.user);
       if (session) {
         // nav to home and setAuth session
         setAuth(session?.user);
-        updateUserData(session?.user);
-        router.replace("/Home");
+        updateUserData(session?.user, session?.user?.email);
+        router.replace("Home");
       } else {
         // move to welcome
         setAuth(null);
@@ -32,22 +64,24 @@ const MainLayout = () => {
     });
   }, []);
 
-  const updateUserData = async (user) => {
+  const updateUserData = async (user, email) => {
     let res = await getUserData(user?.id);
 
     if (res.success) {
-      setUserData(res.data);
+      setUserData({ ...res.data, email });
     }
     // console.log("Got userData: ", res);
   };
 
   return (
-    <Stack
-      screenOptions={{
-        headerShown: false,
-        animation: "simple_push",
-      }}
-    />
+    <>
+      <Stack
+        screenOptions={{
+          headerShown: false,
+          animation: "simple_push",
+        }}
+      />
+    </>
   );
 };
 

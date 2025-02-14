@@ -5,11 +5,9 @@ export const theme = {
     dark: "#3e3e3e",
     darkLight: "#e1e1e1",
     gray: "#e3e3e3",
-
     text: "#494949",
     textLight: "#7c7c7c",
     textDark: "#1d1d1d",
-
     roseRed: "#ef4444",
     roseLightRed: "#f87171",
   },
@@ -30,13 +28,10 @@ export const theme = {
 };
 
 export const FONTFAMILY = {
-  poppins_black: "Poppins-Black",
-  poppins_bold: "Poppins-Bold",
-  poppins_extrabold: "Poppins-ExtraBold",
-  poppins_extralight: "Poppins-ExtraLight",
   poppins_light: "Poppins-Light",
   poppins_medium: "Poppins-Medium",
   poppins_regular: "Poppins-Regular",
-  poppins_semibold: "Poppins-SemiBold",
-  poppins_thin: "Poppins-Thin",
+  poppins_semibold: "Poppins-Semibold",
+  kanit_Medium: "Kanit-Medium",
+  kanit_Regular: "Kanit-Regular",
 };
