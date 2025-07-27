@@ -1,15 +1,14 @@
-import { View, Text } from "react-native";
-import React, { useEffect } from "react";
-import { SplashScreen, Stack, useRouter } from "expo-router";
-import { AuthProvider, useAuth } from "../Contexts/AuthContext";
-import { supabase } from "../lib/Supabase";
-import { getUserData } from "../Services/userService";
 import { useFonts } from "expo-font";
+import { SplashScreen, Stack, useRouter } from "expo-router";
 import {
   setStatusBarBackgroundColor,
   setStatusBarStyle,
 } from "expo-status-bar";
+import { useEffect } from "react";
 import { theme } from "../constants/theme";
+import { AuthProvider, useAuth } from "../Contexts/AuthContext";
+import { supabase } from "../lib/Supabase";
+import { getUserData } from "../Services/userService";
 
 const _layout = () => {
   const [fontsLoaded, error] = useFonts({
