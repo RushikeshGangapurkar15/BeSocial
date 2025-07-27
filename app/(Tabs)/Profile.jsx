@@ -1,15 +1,14 @@
-import { View, Text, StyleSheet, Alert, Pressable } from "react-native";
-import React from "react";
+import { useRouter } from "expo-router";
+import { Alert, Pressable, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import Header from "../../components/Header";
 import ScreenWrapper from "../../components/ScreenWrapper";
 import { useAuth } from "../../Contexts/AuthContext";
-import { useRouter } from "expo-router";
-import Header from "../../components/Header";
 import { hp, wp } from "../../Helpers/Common";
-import { TouchableOpacity } from "react-native";
+
 import Icon from "../../assets/icons/Index";
+import Avatar from "../../components/Avatar";
 import { FONTFAMILY, theme } from "../../constants/theme";
 import { supabase } from "../../lib/Supabase";
-import Avatar from "../../components/Avatar";
 
 const Profile = () => {
   const { user, setAuth } = useAuth();
@@ -32,7 +31,7 @@ const Profile = () => {
       {
         text: "Logout",
         onPress: () => onLogout(),
-        style: "destructive",
+        style: "destructive" ,
       },
     ]);
   };

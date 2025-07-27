@@ -39,4 +39,9 @@ yarn-error.*
 # IDEs
 .vscode/
 
+# Environment files
+.env
 app-example
+
+# React Native
+constants

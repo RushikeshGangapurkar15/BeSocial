@@ -24,7 +24,7 @@ const _layout = () => {
     if (error) throw error;
     if (fontsLoaded) {
       SplashScreen.hideAsync();
-      setStatusBarStyle("light");
+      setStatusBarStyle("dark");
       setStatusBarBackgroundColor(theme.colors.text);
     }
   }, [fontsLoaded, error]);

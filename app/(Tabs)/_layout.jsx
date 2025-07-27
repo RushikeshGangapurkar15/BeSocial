@@ -1,9 +1,7 @@
-import { View, Text, Image } from "react-native";
-import React from "react";
 import { Tabs } from "expo-router";
-import { Home, User, Plus } from "../../assets/icons/CustomeIcons";
+import { Text, View } from "react-native";
+import { Home, Plus, User } from "../../assets/icons/CustomeIcons";
 import { theme } from "../../constants/theme";
-import Icon from "../../assets/icons/Index";
 
 const TabLayout = () => {
   const TabIcon = ({ icon, color, name, focused }) => {
@@ -35,7 +33,7 @@ const TabLayout = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          padding: 3,
+          // padding: 3,
           marginTop: 5,
         }}
       >
@@ -46,6 +44,8 @@ const TabLayout = () => {
             fontWeight: focused ? theme.fonts.bold : theme.fonts.medium,
             textAlign: "center",
             marginTop: 3,
+            fontSize: 8,
+
           }}
         >
           {name}
@@ -60,6 +60,8 @@ const TabLayout = () => {
           borderTopLeftRadius: 30,
           borderTopRightRadius: 30,
           height: 73,
+          paddingBottom: 10,
+          paddingTop: 10,
         },
       }}
     >
