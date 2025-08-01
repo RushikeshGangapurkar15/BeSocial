@@ -65,8 +65,8 @@ const MainLayout = () => {
 
   const updateUserData = async (user, email) => {
     let res = await getUserData(user?.id);
-
     if (res.success) {
+      // console.log("askhdgfg ",res.data)
       setUserData({ ...res.data, email });
     }
     // console.log("Got userData: ", res);

@@ -13,9 +13,10 @@ import { supabase } from "../../lib/Supabase";
 const Profile = () => {
   const { user, setAuth } = useAuth();
   const router = useRouter();
+  //  console.log("User aksjdklfh", user);
   const onLogout = async () => {
     const { error } = await supabase.auth.signOut();
-
+   
     if (error) {
       Alert.alert("Sign out Error", error.message);
     }
@@ -73,7 +74,7 @@ const UserHeader = ({ user, router, handleLogout }) => {
           <View style={{ alignItems: "center", gap: 4 }}>
             <Text style={styles.userName}>{user && user.name}</Text>
             <Text style={[styles.textInfo, { marginTop: -5 }]}>
-              {user.address ? user.address : "India"}
+              {user.address ? user.address : ""}
             </Text>
           </View>
 
@@ -81,18 +82,18 @@ const UserHeader = ({ user, router, handleLogout }) => {
           <View style={{ gap: 10 }}>
             <View style={styles.info}>
               <Icon name="mail" size={20} color={theme.colors.textLight} />
-              <Text style={styles.textInfo}>{(user && user.email) || "a"}</Text>
+              <Text style={styles.textInfo}>{(user && user.email) }</Text>
             </View>
-            {user && !user.phoneNumber && (
+            {user && user.phoneNumber && (
               <View style={styles.info}>
                 <Icon name="call" size={20} color={theme.colors.textLight} />
                 <Text style={styles.textInfo}>
-                  {(user && user.phoneNumber) || "99855484"}
+                  {(user && user.phoneNumber) }
                 </Text>
               </View>
             )}
-            {user && !user.bio && (
-              <Text style={styles.textInfo}>{(user && user.bio) || "bio"}</Text>
+            {user && user.bio && (
+              <Text style={styles.textInfo}>{(user && user.bio) }</Text>
             )}
           </View>
         </View>
